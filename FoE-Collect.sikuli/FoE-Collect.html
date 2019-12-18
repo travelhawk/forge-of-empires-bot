@@ -1,0 +1,151 @@
+
+<html>
+   <head>
+      <style type="text/css">
+         .sikuli-code {
+            font-size: 20px;
+            font-family: "Osaka-mono", Monospace;
+            line-height: 1.5em;
+            display:table-cell;
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;   /* remove horizontal scroll-bar when viewing in IE7 */
+         }
+         .sikuli-code img {
+            vertical-align: middle;
+            margin: 2px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-box-shadow: 1px 1px 1px gray;
+            -webkit-box-shadow: 1px 1px 2px gray;
+         }
+         .kw {
+            color: blue;
+         }
+         .skw {
+            color: rgb(63, 127, 127);
+         }
+
+         .str {
+            color: rgb(128, 0, 0);
+         }
+
+         .dig {
+            color: rgb(128, 64, 0);
+         }
+
+         .cmt {
+            color: rgb(200, 0, 200);
+         }
+
+         h2 {
+            display: inline;
+            font-weight: normal;
+         }
+
+         .info {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            display: none;
+         }
+
+         a {
+            color: #9D2900;
+         }
+
+         body {
+            font-family: "Trebuchet MS", Arial, Sans-Serif;
+         }
+
+      </style>
+   </head>
+<body>
+<div class="info">
+<h2>FoE-Collect.sikuli</h2> <a href="FoE-Collect.zip">(Download this script)</a>
+</div>
+<pre class="sikuli-code">
+<span class="kw">print</span> <span class="str">"start"</span>
+
+<span class="kw">def</span> startGame():
+    App.open(<span class="str">"chrome"</span>)
+    <span class="skw">wait</span>(<span class="dig">1.5</span>)
+    paste(<span class="str">"https://de.forgeofempires.com/"</span>)
+    <span class="skw">type</span>(Key.ENTER)
+    <span class="skw">wait</span>(<span class="dig">1.25</span>)
+
+    <span class="cmt">#login</span>
+    <span class="kw">if</span> exists(<img src="1576683227345.png" />):
+        <span class="skw">click</span>(<span class="str">"1527601417125"</span>)
+        <span class="skw">wait</span>(<span class="dig">1</span>)
+        <span class="skw">click</span>(<img src="1527601615780.png" />)
+        <span class="skw">wait</span>(<span class="dig">4.5</span>)
+
+<span class="kw">def</span> collectResources(event):
+    <span class="kw">print</span> <span class="str">"collect"</span>
+    <span class="kw">for</span> x <span class="kw">in</span> findAll(Pattern(<img src="1527582458451.png" />).similar(<span class="dig">0.57</span>)):
+        <span class="skw">click</span>(x.below(<span class="dig">50</span>))
+        <span class="kw">for</span> y <span class="kw">in</span> findAll(Pattern(<img src="1527581487161.png" />).similar(<span class="dig">0.57</span>)):
+                <span class="skw">click</span>(y.below(<span class="dig">50</span>))
+
+<span class="kw">def</span> collectMoney(event):
+    <span class="kw">print</span> <span class="str">"money"</span>
+    <span class="kw">for</span> x <span class="kw">in</span> findAll(Pattern(<img src="1527582458451.png" />).similar(<span class="dig">0.57</span>)):
+        <span class="skw">click</span>(x.below(<span class="dig">50</span>))
+
+<span class="kw">def</span> collectTools(event):
+    <span class="kw">print</span> <span class="str">"tools"</span>
+    <span class="kw">for</span> x <span class="kw">in</span> findAll(Pattern(<img src="1527581487161.png" />).similar(<span class="dig">0.57</span>)):
+        <span class="skw">click</span>(x.below(<span class="dig">40</span>))
+
+<span class="kw">def</span> collectArmy(event):
+    <span class="kw">print</span> <span class="str">"army"</span>
+    <span class="kw">for</span> x <span class="kw">in</span> findAll(Pattern(<img src="1527601979700.png" />).similar(<span class="dig">0.57</span>)):
+        <span class="skw">click</span>(x.below(<span class="dig">50</span>))
+
+<span class="kw">def</span> collectGoods(event):
+    <span class="kw">print</span> <span class="str">"goods"</span>
+    <span class="kw">for</span> x <span class="kw">in</span> findAll(Pattern(<img src="1527605472635.png" />).similar(<span class="dig">0.57</span>)):
+        <span class="skw">click</span>(x.below(<span class="dig">50</span>))
+
+<span class="kw">def</span> closeEventNews(event):
+    <span class="kw">print</span> <span class="str">"close events"</span>
+    <span class="kw">for</span> x <span class="kw">in</span> findAll(<img src="1576683891159.png" />):
+        <span class="skw">click</span>(x)
+
+<span class="kw">def</span> showChangedInRegion(event):
+    <span class="kw">print</span> <span class="str">"something changed in "</span>, event.region
+    <span class="kw">for</span> ch <span class="kw">in</span> event.changes:
+        ch.highlight() <span class="cmt"># highlight all changes</span>
+    <span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="kw">for</span> ch <span class="kw">in</span> event.changes:
+        ch.highlight() <span class="cmt"># turn off the highlights</span>
+
+<span class="kw">def</span> onScreenChange():
+    collectResources()
+
+<span class="kw">def</span> isLoggedIn():
+    <span class="cmt"># check if already open</span>
+    <span class="kw">if</span> exists(<img src="1576677990119.png" />):
+        <span class="kw">return</span> True
+    <span class="kw">return</span> False
+
+<span class="cmt"># main</span>
+<span class="kw">if</span> <span class="kw">not</span> isLoggedIn():
+    startGame()
+
+onAppear(Pattern(<img src="1576683891159.png" />).similar(<span class="dig">0.95</span>), closeEventNews)
+onAppear(Pattern(<img src="1527582458451.png" />).similar(<span class="dig">0.57</span>), collectMoney)
+onAppear(Pattern(<img src="1527581487161.png" />).similar(<span class="dig">0.57</span>), collectTools)
+onAppear(Pattern(<img src="1527601979700.png" />).similar(<span class="dig">0.57</span>), collectArmy)
+onAppear(Pattern(<img src="1527605472635.png" />).similar(<span class="dig">0.57</span>), collectGoods)
+
+observe(<span class="dig">100</span>, False)
+</pre>
+</body>
+</html>
