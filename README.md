@@ -2,6 +2,7 @@
 Simple bot for Forge of Empires implemented with [Sikulix](http://sikulix.com/). The bot collects money, tools, army and goods so that I don't have to do this by myself.
 
 ## Demo
+The following demo shows what the bot is doing. You see a screen capture after the bot is executed.
 ![Demo Bot](Demo/demo.gif)
 
 ## Usage
